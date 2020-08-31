@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Курсы валют</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <style>
+        .title {
+            margin-left: 30px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .select {
+            width: 150px;
+            margin-left: 30px;
+        }
+
+        .inputs {
+            zoom: 0.75;
+            margin-left: 30px;
+            width: 207px;
+            height: 26px;
+            font-size: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            margin-left: 50px;
+            width: 150px;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 250px;
+            height: 182px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -145px;
+            margin-left: -145px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container2 .title {
+                margin-left: 7px;
+            }
+
+            .container2 .button {
+                background-color: #cc0000;
+                margin-left: 6px;
+                font-size: 8px;
+                width: 80px;
+            }
+
+            .container2 .inputs, .select {
+                display: block;
+                margin-left: 0px;
+                height: 18px;
+                width: 200px;
+                font-size: 10px;
+                zoom: 0.45;
+            }
+
+            body .container {
+                font-size: 7px;
+                width: 100px;
+                height: 110px;
+                border-radius: 3px;
+                padding: 10px;
+                margin-left: -15%;
+                margin-top: -15%;
+            }
+        }
+
+        @media screen and (min-width: 2000px) {
+            .container2 .button {
+                background-color: #166dd9;
+                font-size: 50px;
+                width: 400px;
+                margin-left: 160px;
+            }
+
+            .container2 .inputs, .select {
+                height: 30px;
+                width: 200px;
+                font-size: 20px;
+                zoom: 2.5;
+            }
+
+            body .container {
+                font-size: 50px;
+                width: 800px;
+                height: 570px;
+                border-radius: 30px;
+                padding: 90px;
+                margin-left: -15%;
+                margin-top: -15%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container container2">
+    <h1 class="title">Курсы валют</h1>
+    <form action="#" method="post" th:action="@{/greeting}" th:object="${greeting}">
+        <div class="inline">
+            <p>Валюта:
+                <select aria-required="true" class="select" name="cur" required>
+                    <option disabled selected></option>
+                    <option th:each="i : ${currencies}" th:text="${i}" th:value="${i}"></option>
+                </select>
+            </p>
+        </div>
+        <p>Дата от: <input class="inputs" name="date1" required th:field="*{date1}" type="date"/></p>
+        <p>Дата до: <input class="inputs" name="date2" required th:field="*{date2}" type="date"/></p>
+        <p><input class="button" type="submit" value="Выполнить"/></p>
+    </form>
+</div>
+</body>
+</html>
